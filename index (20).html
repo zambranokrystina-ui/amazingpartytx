@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Amazing Party TX – Event Designer | Houston, Texas</title>
+  <meta name="description" content="Amazing Party TX – Decoración de eventos elegante en Houston, Texas. Bodas, quinceañeras, baby showers, cumpleaños y eventos corporativos." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23e8637e'/><text y='.9em' font-size='70' x='12'>🎉</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Raleway:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:       #c9a8a8;
+      --pink-lt:    #f2c8c8;
+      --pink-pale:  #ffffff;
+      --pink-deep:  #a88888;
+      --gold:       #c9a84c;
+      --gold-lt:    #e8cc80;
+      --white:      #ffffff;
+      --cream:      #ffffff;
+      --text:       #2d2020;
+      --gray:       #7a6060;
+      --border:     rgba(232,99,126,.15);
+      --serif:      'Cinzel', Georgia, serif;
+      --sans:       'Raleway', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1140px, 92vw); margin-inline: auto; }
+
+    /* UTILITIES */
+    .tag {
+      display: inline-block;
+      font-size: .62rem; font-weight: 600; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: .9rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400; line-height: 1.15; text-align: center;
+    }
+    .pink-rule {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; margin: 1.2rem auto 1.6rem;
+    }
+    .pink-rule::before, .pink-rule::after {
+      content: ''; flex: 1; max-width: 70px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink-lt));
+    }
+    .pink-rule::after { background: linear-gradient(90deg, var(--pink-lt), transparent); }
+    .pink-rule span { color: var(--pink); font-size: .8rem; }
+    .section-sub {
+      text-align: center; color: var(--gray); font-size: .88rem;
+      max-width: 500px; margin-inline: auto; margin-bottom: 4rem; line-height: 1.9;
+    }
+    .btn {
+      display: inline-block; font-family: var(--sans);
+      font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      padding: 1rem 2.8rem; border: 1.5px solid var(--pink); color: var(--pink);
+      transition: all .3s; cursor: pointer; background: transparent;
+      border-radius: 2px;
+    }
+    .btn:hover { background: var(--pink); color: var(--white); }
+    .btn-solid { background: var(--pink); color: var(--white); }
+    .btn-solid:hover { background: var(--pink-deep); border-color: var(--pink-deep); }
+    .btn-gold { border-color: var(--gold); color: var(--gold); }
+    .btn-gold:hover { background: var(--gold); color: var(--white); }
+
+    /* Reveal */
+    .reveal { opacity: 1; transform: none; }
+    .testi-card, .mosaic, .g, .contact-wrap, .contact-info, .form-box, .areas-wrap, .process-step { opacity: 1 !important; transform: none !important; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0; transition: background .4s, box-shadow .4s;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    #nav.scrolled {
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    #nav.scrolled .nav-links a { color: var(--gray); }
+    #nav.scrolled .nav-links a:hover { color: var(--pink); }
+    .nav-inner {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; padding: 1rem 2.5vw; gap: 2rem;
+    }
+    .nav-logo-box {
+      position: static; transform: none;
+    }
+    .nav-left { display: flex; gap: 2.5rem; justify-content: flex-end; align-items: center; }
+    .nav-right { display: flex; gap: 2.5rem; justify-content: flex-start; align-items: center; }
+    .nav-links a {
+      font-size: .6rem; font-weight: 600; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--text); transition: color .3s;
+      text-shadow: none;
+    }
+    .nav-links a:hover { color: var(--pink-lt); }
+    .nav-logo-box {
+      text-align: center; border: 1px solid var(--pink-lt);
+      padding: .6rem 1.8rem .5rem; transition: border-color .4s;
+    }
+    .logo-name {
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 500;
+      letter-spacing: .1em; color: var(--text); line-height: 1; display: block;
+    }
+    .logo-sub {
+      font-size: .5rem; font-weight: 600; letter-spacing: .35em;
+      text-transform: uppercase; color: var(--pink);
+      display: block; margin-top: .3rem;
+    }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); transition:.3s; }
+    #mobile-menu {
+      display: none; flex-direction: column; gap: 1.6rem;
+      background: var(--white); padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      position: fixed; top: 80px; left: 0; right: 0; z-index: 999;
+    }
+    #mobile-menu a { font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gray); }
+    @media(max-width:860px){
+      .nav-left, .nav-right { display:none; }
+      .hamburger { display:flex; }
+      .nav-right-mob { display:flex; justify-content:flex-end; }
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100svh; display: grid; place-items: center;
+      text-align: center; padding: 9rem 1.5rem 5rem;
+      position: relative; z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.92) 100%),
+        url('/images/_MG_5822.jpeg') center/cover no-repeat;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: none;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: .62rem; font-weight: 600; letter-spacing: .38em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 1.4rem;
+      animation: fadeUp .9s ease both;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      font-weight: 400; line-height: 1.05; color: var(--text);
+      animation: fadeUp .9s .15s ease both;
+    }
+    .hero-title em { font-style: italic; color: var(--pink); }
+    .hero-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: .8rem; margin: 1.8rem auto;
+      animation: fadeUp .9s .28s ease both;
+    }
+    .hero-divider::before, .hero-divider::after {
+      content: ''; width: 50px; height: 1px; background: var(--pink-lt);
+    }
+    .hero-divider span { font-size: .8rem; color: var(--pink); }
+    .hero-sub {
+      max-width: 440px; margin: 0 auto 2.8rem;
+      font-size: .9rem; color: var(--gray); line-height: 1.9;
+      animation: fadeUp .9s .35s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .9s .48s ease both;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      font-size: .58rem; font-weight: 600; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--pink);
+      animation: fadeUp 1s .65s ease both;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 38px;
+      background: linear-gradient(var(--pink), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+    @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+    /* ── STATS ── */
+    #stats {
+      background: var(--pink);
+      padding: 3rem 0;
+      position: relative; z-index: 1;
+    }
+    .stats-inner {
+      display: flex; justify-content: center; align-items: center;
+      gap: 4rem; flex-wrap: wrap; text-align: center;
+    }
+    .stat-item span {
+      display: block; font-family: var(--serif); font-size: 3rem;
+      font-weight: 400; color: var(--white); line-height: 1;
+    }
+    .stat-item p {
+      font-size: .58rem; font-weight: 600; letter-spacing: .25em;
+      text-transform: uppercase; color: rgba(255,255,255,.75); margin-top: .4rem;
+    }
+    .stat-sep { width: 1px; height: 40px; background: rgba(255,255,255,.25); }
+    @media(max-width:580px){ .stat-sep{display:none;} }
+
+    /* ── ABOUT ── */
+    #about { padding: 9rem 0; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-img { position: relative; }
+    .about-img img { width: 100%; height: 580px; object-fit: cover; }
+    .about-img::before {
+      content: ''; position: absolute;
+      top: -16px; left: -16px; right: 16px; bottom: 16px;
+      border: 2px solid var(--pink-lt); z-index: -1;
+    }
+    .about-img .float-tag {
+      position: absolute; bottom: -1.4rem; right: -1.4rem;
+      background: var(--pink); color: var(--white);
+      padding: 1.6rem 2rem; text-align: center; min-width: 140px;
+    }
+    .about-img .float-tag strong {
+      display: block; font-family: var(--serif); font-size: 2.4rem;
+      font-weight: 400; color: var(--white); line-height: 1;
+    }
+    .about-img .float-tag small {
+      font-size: .58rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: rgba(255,255,255,.8);
+    }
+    .about-text h2 {
+      font-family: var(--serif); font-size: clamp(2rem,4vw,3.2rem);
+      font-weight: 400; line-height: 1.2; margin-bottom: 1.6rem;
+    }
+    .about-text h2 em { font-style: italic; color: var(--pink); }
+    .about-text p { color: var(--gray); font-size: .88rem; margin-bottom: 1.2rem; line-height: 1.9; }
+    .about-text blockquote {
+      border-left: 3px solid var(--pink-lt); padding-left: 1.4rem;
+      font-family: var(--serif); font-size: 1.15rem; font-style: italic;
+      color: var(--pink-deep); margin: 2rem 0 2.4rem; line-height: 1.5;
+    }
+    @media(max-width:860px){
+      .about-grid{grid-template-columns:1fr;gap:4rem;}
+      .about-img img{height:380px;}
+      .about-img .float-tag{right:0;}
+    }
+
+    /* ── GALLERY FILTERS ── */
+    .gallery-filters {
+      display: flex; justify-content: center; gap: .8rem;
+      flex-wrap: wrap; margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      font-family: var(--sans); font-size: .62rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: .7rem 1.8rem; border: 1.5px solid var(--border);
+      background: transparent; color: var(--gray); cursor: pointer; transition: .3s;
+      border-radius: 2px;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--pink); color: var(--pink); background: var(--pink-pale);
+    }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem;
+    }
+    .gi {
+      overflow: hidden; cursor: pointer; aspect-ratio: 1;
+      transition: opacity .4s, transform .4s;
+    }
+    .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .gi:hover img { transform: scale(1.06); }
+    .gi.hidden { display: none; }
+    @media(max-width:860px){ .gallery-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .gallery-grid { grid-template-columns: repeat(2,1fr); gap: .3rem; } }
+
+    /* ── MOBILE FIXES ── */
+    @media(max-width:600px){
+      .mosaic { grid-template-columns: 1fr 1fr !important; gap: .4rem; }
+      .g { min-height: 160px !important; }
+      .g-tall { grid-row: span 1 !important; min-height: 160px !important; }
+      .g-wide { grid-column: span 1 !important; }
+      .testi-grid { grid-template-columns: 1fr !important; }
+      .testi-card { opacity: 1 !important; transform: none !important; display: block !important; }
+      .services-grid { grid-template-columns: 1fr !important; }
+      .stats-inner { gap: 1.5rem !important; }
+      .hero-title { font-size: clamp(2.2rem, 8vw, 4rem) !important; }
+      .nav-inner { padding: 1rem 4vw !important; }
+      .nav-logo-box .logo-name { font-size: 1.1rem !important; }
+      #instagram-strip a { font-size: 1.3rem !important; }
+      .process-steps { grid-template-columns: 1fr 1fr !important; gap: 2rem; }
+      .footer-top { grid-template-columns: 1fr !important; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media(max-width:400px){
+      .mosaic { grid-template-columns: 1fr !important; }
+      .process-steps { grid-template-columns: 1fr !important; }
+    }
+
+    /* ── CAROUSEL ── */
+    .cslide {
+      position: absolute !important;
+      inset: 0;
+      background-size: cover !important;
+      background-position: center !important;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1;
+    }
+    .cslide.active { opacity: 1 !important; z-index: 2; }
+    .cslide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,10,10,.7) 0%, rgba(20,10,10,.15) 60%, transparent 100%);
+      z-index: 1;
+    }
+    .cslide-caption {
+      position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%);
+      text-align: center; color: #fff; width: 90%; z-index: 3;
+    }
+    .cslide-caption p {
+      font-size: .62rem; font-weight: 500; letter-spacing: .35em;
+      text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: .6rem;
+    }
+    .cslide-caption h2 {
+      font-family: var(--serif); font-size: clamp(1.4rem,3vw,2.2rem);
+      font-weight: 400; letter-spacing: .08em;
+    }
+    .carr-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: transparent; border: 1px solid rgba(255,255,255,.5);
+      color: #fff; font-size: 2.5rem; width: 52px; height: 52px;
+      cursor: pointer; transition: .3s; z-index: 10;
+      display: flex; align-items: center; justify-content: center; line-height: 1;
+    }
+    .carr-arrow:hover { background: rgba(255,255,255,.2); }
+    .carr-prev { left: 2rem; }
+    .carr-next { right: 2rem; }
+    .carr-dots {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: .5rem; z-index: 10;
+    }
+    .carr-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,.4); border: none; cursor: pointer; transition: .3s;
+    }
+    .carr-dot.active { background: #fff; transform: scale(1.3); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <div class="nav-left nav-links">
+        <a href="#about" id="nav_about">Nosotros</a>
+        
+      </div>
+      <a href="#" class="nav-logo-box">
+        <span class="logo-name">Amazing Party TX</span>
+        <span class="logo-sub">Celebrations &amp; Events</span>
+      </a>
+      <div class="nav-right nav-links">
+        <a href="#portfolio" id="nav_gallery">Portfolio</a>
+        <a href="#contact" id="nav_contact">Contacto</a>
+      </div>
+      <button onclick="toggleLang()" id="langBtn" title="Cambiar idioma" style="background:transparent;border:none;cursor:pointer;font-size:1.3rem;padding:.2rem .4rem;transition:transform .3s;line-height:1;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">🇺🇸</button>
+      <div class="hamburger" id="burger" style="display:none;"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div id="mobile-menu">
+    <a href="#about" onclick="closeMobile()">Nosotros</a>
+    <a href="#gallery" onclick="closeMobile()">Galería</a>
+    <a href="#contact" onclick="closeMobile()">Contacto</a>
+    <a href="#contact" onclick="closeMobile()" style="color:var(--pink);font-weight:600;">Cotizar Evento</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div>
+      <p class="hero-eyebrow" id="hero_eyebrow">Houston, Texas &nbsp;·&nbsp; Party Stylist &amp; Planner</p>
+      <h1 class="hero-title">
+        We create<br><em>moments</em> that<br>become memories
+      </h1>
+      <div class="hero-divider"><span>✦</span></div>
+      <p class="hero-sub" id="hero_sub">Decoración elegante y completamente personalizada para bodas,
+        cumpleaños, baby showers, quinceañeras y eventos especiales en Houston y sus alrededores.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-solid" id="hero_btn1">Solicitar Cotización</a>
+        <a href="#gallery" class="btn" id="hero_btn2">Ver Galería</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item"><span>+200</span><p id="stats_events">Eventos realizados</p></div>
+        <div class="stat-sep"></div>
+        <div class="stat-item"><span>5 ★</span><p id="stats_rating">Valoración promedio</p></div>
+        <div class="stat-sep"></div>
+        <div class="stat-item"><span>6</span><p id="stats_cities">Ciudades en Texas</p></div>
+        <div class="stat-sep"></div>
+        <div class="stat-item"><span>100%</span><p id="stats_custom">Personalizado</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="/images/_MG_5875.jpeg" alt="Amazing Party TX" loading="lazy" />
+          <div class="float-tag"><strong>Amazing</strong><small>Party TX</small></div>
+        </div>
+        <div class="about-text">
+          <span class="tag" id="about_tag">· Party Stylist &amp; Planner ·</span>
+          <h2 id="about_h2">Arte, Estilo & <em>Pasión</em> por cada Detalle</h2>
+          <p id="about_p1">En Amazing Party TX transformamos espacios ordinarios en escenarios extraordinarios. Creamos experiencias visuales memorables, diseñadas a medida para cada celebración.</p>
+          <p id="about_p2">Nos encargamos de cada detalle — desde el concepto y la decoración hasta la planificación y coordinación — para que tu evento refleje tu personalidad y se viva sin estrés.</p>
+          <blockquote>"We create moments that become memories"</blockquote>
+          <a href="#contact" class="btn btn-solid" id="about_btn">Trabaja con nosotros</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM STRIP -->
+  <section id="instagram-strip">
+    <div class="container">
+      <p id="instagram_follow">Síguenos en Instagram</p>
+      <a href="https://instagram.com/amazingpartytx" target="_blank">@amazingpartytx</a>
+    </div>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section id="gallery" style="position:relative;width:100%;height:100vh;min-height:580px;overflow:hidden;background:#111;">
+
+    <div class="cslide active" style="background-image:url('/images/_MG_5822.jpeg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Event Design &amp; Styling</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/gallery/cumpleanos/cb1.jpg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Innovative Design + Décor</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/gallery/babyshower/bs3.jpg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Captivating + Immersive Events</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/gallery/cumpleanos/cb4.jpg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Celebrations With Wow Factor</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/gallery/cumpleanos/cb7.jpg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Unforgettable Memories</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/_MG_5875.jpeg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Up-Leveled + Interactive Experiences</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/gallery/babyshower/bs1.jpg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Larger Than Life Entertainment</p><h2>Amazing Party TX</h2></div>
+    </div>
+    <div class="cslide" style="background-image:url('/images/gallery/cumpleanos/cb9.jpg')">
+      <div class="cslide-overlay"></div>
+      <div class="cslide-caption"><p>Creating Magic</p><h2>Amazing Party TX</h2></div>
+    </div>
+
+    <button class="carr-arrow carr-prev" onclick="moveC(-1)">&#8249;</button>
+    <button class="carr-arrow carr-next" onclick="moveC(1)">&#8250;</button>
+    <div class="carr-dots" id="carrDots"></div>
+  </section>
+
+    <!-- EXPLORE PORTFOLIO -->
+  <section id="portfolio" style="padding:7rem 0;background:var(--white);">
+    <div class="container">
+      <span class="tag" style="display:block;text-align:center;">Explore Our Portfolio</span>
+      <h2 class="section-title" style="margin-bottom:.5rem;">Our Work</h2>
+      <div class="pink-rule"><span>✦</span></div>
+      <p class="section-sub">Each event is a unique creation designed around our clients vision.</p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="/images/gallery/cumpleanos/cb1.jpg" alt="Cumpleaños"/>
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-info">
+            <h3>Cumpleaños</h3>
+            <p>Experiencias únicas y personalizadas para celebraciones de todas las edades.</p>
+            <a href="cumpleanos.php" class="portfolio-btn">View More</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="/images/gallery/babyshower/bs3.jpg" alt="Baby Shower"/>
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-info">
+            <h3>Baby Showers</h3>
+            <p>Decoraciones delicadas y modernas para celebrar la llegada de una nueva vida.</p>
+            <a href="babyshower.php" class="portfolio-btn">View More</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80" alt="Bodas"/>
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-info">
+            <h3>Bodas</h3>
+            <p>Diseños elegantes y sofisticados para ceremonias y recepciones memorables.</p>
+            <a href="bodas.php" class="portfolio-btn">View More</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1478146059778-26028b07395a?w=800&q=80" alt="Quinceañeras"/>
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-info">
+            <h3>Quinceañeras</h3>
+            <p>Decoraciones elegantes para celebrar los 15 años de manera especial.</p>
+            <a href="quinceaneras.php" class="portfolio-btn">View More</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80" alt="Corporativos"/>
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-info">
+            <h3>Eventos Corporativos</h3>
+            <p>Diseño profesional de alto impacto para eventos empresariales.</p>
+            <a href="corporativos.php" class="portfolio-btn">View More</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card portfolio-cta">
+          <div class="portfolio-img">
+            <img src="/images/_MG_5875.jpeg" alt="Amazing Party TX"/>
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-info">
+            <h3>Your Event</h3>
+            <p>¿Tienes algo especial en mente? Diseñamos cualquier tipo de celebración para ti.</p>
+            <a href="newclient.php" class="portfolio-btn">New Client Form</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <span class="tag" style="display:block;text-align:center;" id="process_tag">Cómo trabajamos</span>
+      <h2 class="section-title" id="process_title">Nuestro Proceso</h2>
+      <div class="pink-rule"><span>✦</span></div>
+      <p class="section-sub" id="process_sub">Desde la primera consulta hasta el último detalle, estamos contigo en cada paso.</p>
+      <div class="process-steps">
+        <div class="process-step"><span class="process-num">01</span><h4 id="p1_title">Consulta Inicial</h4><p id="p1_desc">Nos reunimos para entender tu visión, presupuesto y los detalles del evento.</p></div>
+        <div class="process-step"><span class="process-num">02</span><h4 id="p2_title">Diseño & Propuesta</h4><p id="p2_desc">Creamos una propuesta visual personalizada con moodboard, paleta y concepto.</p></div>
+        <div class="process-step"><span class="process-num">03</span><h4 id="p3_title">Confirmación</h4><p id="p3_desc">Aprobas el diseño, firmamos el contrato y aseguramos tu fecha.</p></div>
+        <div class="process-step"><span class="process-num">04</span><h4 id="p4_title">Instalación</h4><p id="p4_desc">El día del evento transformamos el espacio con perfección y puntualidad.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section id="areas">
+    <div class="container">
+      <div class="areas-wrap">
+        <div class="areas-text">
+          <span class="tag">Cobertura</span>
+          <h2>Servimos toda el área<br>de <em>Houston</em></h2>
+          <p>Nos desplazamos a todas las ciudades del área metropolitana de Houston para llevar nuestra decoración hasta tu evento.</p>
+          <div class="pills">
+            <span class="pill">Houston</span><span class="pill">Katy</span>
+            <span class="pill">Sugar Land</span><span class="pill">Cypress</span>
+            <span class="pill">Pearland</span><span class="pill">The Woodlands</span>
+            <span class="pill">& más áreas</span>
+          </div>
+          <a href="#contact" class="btn btn-solid">Consultar disponibilidad</a>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=900&q=80" alt="Houston Texas" loading="lazy" style="width:100%;height:460px;object-fit:cover;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <span class="tag" style="display:block;text-align:center;">Lo que dicen de nosotros</span>
+      <h2 class="section-title">Testimonios</h2>
+      <div class="pink-rule"><span>✦</span></div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>Amazing Party TX transformó la boda de mis sueños en realidad. Cada flor, cada detalle, cada mesa estaba exactamente como lo imaginé. ¡No puedo recomendarlos más!</p>
+          <div class="testi-author"><strong>Gabriela Morales</strong><small>Boda · Sugar Land</small></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>El cumpleaños de mis gemelas quedó increíble. El tema de flores y globos fue perfecto. Todos los invitados preguntaron quién decoró. ¡100% los volvería a contratar!</p>
+          <div class="testi-author"><strong>Daniela Herrera</strong><small>Cumpleaños · Katy</small></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>Mi baby shower fue un sueño hecho realidad. Los detalles en rosa y dorado quedaron preciosos. El equipo fue muy profesional y llegó puntual. ¡Los amo!</p>
+          <div class="testi-author"><strong>Sofía Reyes</strong><small>Baby Shower · Pearland</small></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>Contratamos Amazing Party TX para el evento de inauguración de nuestra empresa y el resultado fue impresionante. Muy profesionales, creativos y atentos a cada detalle.</p>
+          <div class="testi-author"><strong>Carlos Mendoza</strong><small>Evento Corporativo · Houston</small></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>La quinceañera de mi hija fue mágica. El backdrop personalizado y la mesa principal quedaron espectaculares. ¡Todas las mamás me pidieron el contacto!</p>
+          <div class="testi-author"><strong>Rosa Elena Vargas</strong><small>Quinceañera · Cypress</small></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>Llevamos 3 años contratándolos para los cumpleaños de nuestros hijos y cada año superan el anterior. Son creativos, puntuales y tienen precios muy accesibles.</p>
+          <div class="testi-author"><strong>Ana Lucía Torres</strong><small>Cumpleaños · The Woodlands</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container" style="text-align:center; padding: 7rem 1.5rem;">
+      <span class="tag" style="display:block;text-align:center;">¿Lista para empezar?</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);font-weight:400;margin-bottom:1rem;line-height:1.15;">
+        Diseñemos tu evento<br><em style="font-style:italic;color:var(--pink);">juntos</em>
+      </h2>
+      <div class="pink-rule"><span>✦</span></div>
+      <p style="color:var(--gray);font-size:.9rem;max-width:480px;margin:0 auto 2.5rem;line-height:1.9;">
+        En AmazingPartyTX cada evento recibe atención personalizada, diseño estratégico y ejecución de alto nivel. Da el primer paso hoy.
+      </p>
+      <a href="newclient.php" class="btn btn-solid" style="font-size:.7rem;padding:1.2rem 3.5rem;display:inline-block;">
+        ✨ Comenzar mi New Client Form
+      </a>
+      <div style="margin-top:3rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;">Ubicación</div>
+          <div style="font-size:.88rem;color:var(--gray);">Houston, Texas</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;">Instagram</div>
+          <div style="font-size:.88rem;color:var(--gray);"><a href="https://instagram.com/amazingpartytx" target="_blank" style="color:var(--pink);">@amazingpartytx</a></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;">WhatsApp</div>
+          <div style="font-size:.88rem;color:var(--gray);"><a href="https://wa.me/18322890186" target="_blank" style="color:var(--pink);">(832) 289-0186</a></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;">Email</div>
+          <div style="font-size:.88rem;color:var(--gray);"><a href="/cdn-cgi/l/email-protection#8beae6eaf1e2e5ecfbeaf9fff2ffeef3eaf8cbece6eae2e7a5e8e4e6" style="color:var(--pink);"><span class="__cf_email__" data-cfemail="40212d213a292e273021323439342538213300272d21292c6e232f2d">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">Amazing <span>Party</span> TX</div>
+          <p>Decoración de eventos elegante y personalizada en Houston, Texas. Transformamos celebraciones en experiencias inolvidables.</p>
+          <div class="social-row">
+            <a href="https://instagram.com/amazingpartytx" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="15" height="15"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/18322890186" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Servicios</h5>
+          <ul>
+            <li><a href="#services">Bodas</a></li><li><a href="#services">Quinceañeras</a></li>
+            <li><a href="#services">Cumpleaños</a></li><li><a href="#services">Baby Shower</a></li>
+            <li><a href="#services">Corporativos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#about" id="nav_about">Nosotros</a></li><li><a href="#portfolio" id="nav_gallery">Portfolio</a></li>
+            <li><a href="#process">Proceso</a></li><li><a href="#testimonials">Testimonios</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <p>📍 Houston, Texas</p>
+          <p>📱 <a href="https://instagram.com/amazingpartytx" target="_blank">@amazingpartytx</a></p>
+          <p>📞 <a href="tel:+18322890186">(832) 289-0186</a></p>
+          <p>📧 <a href="/cdn-cgi/l/email-protection#1a7b777b6073747d6a7b686e636e7f627b695a7d777b737634797577"><span class="__cf_email__" data-cfemail="6a0b070b1003040d1a0b181e131e0f120b192a0d070b030644090507">[email&#160;protected]</span></a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Amazing Party TX · Houston, Texas. Todos los derechos reservados.</span>
+        <span>Diseñado y desarrollado por <a href="https://wa.me/19197715951?text=Hola!%20Me%20interesa%20una%20página%20web." target="_blank" style="color:var(--gold);font-weight:500;text-decoration:none;">MERCADEO MRR LLC</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating New Client Form button -->
+  <a href="newclient.php" class="ncf-float" title="New Client Form">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+  </a>
+
+  <a href="https://wa.me/18322890186?text=Hola!%20Me%20interesa%20cotizar%20un%20evento." target="_blank" class="wa-float">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ── LANGUAGE TOGGLE ──
+    const translations = {
+      es: {
+        nav_about: 'Nosotros', nav_services: 'Servicios',
+        nav_gallery: 'Galería', nav_contact: 'Contacto',
+        hero_eyebrow: 'Houston, Texas · Party Stylist & Planner',
+        hero_title: 'Diseñamos tus <em>Momentos</em> más Especiales',
+        hero_sub: 'Decoración elegante y completamente personalizada para bodas, cumpleaños, baby showers, quinceañeras y eventos especiales en Houston y sus alrededores.',
+        hero_btn1: 'Solicitar Cotización', hero_btn2: 'Ver Galería',
+        about_tag: '· Party Stylist & Planner ·',
+        about_h2: 'Arte, Estilo & <em>Pasión</em> por cada Detalle',
+        about_p1: 'En Amazing Party TX transformamos espacios ordinarios en escenarios extraordinarios. Creamos experiencias visuales memorables, diseñadas a medida para cada celebración.',
+        about_p2: 'Nos encargamos de cada detalle — desde el concepto y la decoración hasta la planificación y coordinación — para que tu evento refleje tu personalidad y se viva sin estrés.',
+        about_btn: 'Trabaja con nosotros',
+        services_tag: 'Lo que ofrecemos', services_title: 'Nuestros Servicios',
+        services_sub: 'Desde la primera consulta hasta el último detalle instalado, hacemos realidad tu visión.',
+        gallery_tag: 'Nuestro trabajo', gallery_title: 'Galería de Eventos',
+        gallery_sub: 'Cada evento es una obra única diseñada con la visión de nuestros clientes.',
+        gallery_btn: 'Ver más en Instagram · @amazingpartytx',
+        process_tag: 'Cómo trabajamos', process_title: 'Nuestro Proceso',
+        process_sub: 'Desde la primera consulta hasta el último detalle, estamos contigo en cada paso.',
+        p1_title: 'Consulta Inicial', p1_desc: 'Nos reunimos para entender tu visión, presupuesto y los detalles del evento.',
+        p2_title: 'Diseño & Propuesta', p2_desc: 'Creamos una propuesta visual personalizada con moodboard, paleta y concepto.',
+        p3_title: 'Confirmación', p3_desc: 'Aprobas el diseño, firmamos el contrato y aseguramos tu fecha.',
+        p4_title: 'Instalación', p4_desc: 'El día del evento transformamos el espacio con perfección y puntualidad.',
+        contact_tag: '¿Lista para empezar?',
+        contact_title: 'Diseñemos tu evento <em>juntos</em>',
+        contact_desc: 'En AmazingPartyTX cada evento recibe atención personalizada, diseño estratégico y ejecución de alto nivel. Da el primer paso hoy.',
+        contact_btn: '✨ Comenzar mi New Client Form',
+        instagram_follow: 'Síguenos en Instagram',
+        stats_events: 'Eventos realizados', stats_rating: 'Valoración promedio',
+        stats_cities: 'Ciudades en Texas', stats_custom: 'Personalizado',
+      },
+      en: {
+        nav_about: 'About', nav_services: 'Services',
+        nav_gallery: 'Gallery', nav_contact: 'Contact',
+        hero_eyebrow: 'Houston, Texas · Party Stylist & Planner',
+        hero_title: 'We design your most <em>Special Moments</em>',
+        hero_sub: 'Elegant and fully customized decoration for weddings, birthdays, baby showers, quinceañeras and special events in Houston and surrounding areas.',
+        hero_btn1: 'Request a Quote', hero_btn2: 'View Gallery',
+        about_tag: '· Party Stylist & Planner ·',
+        about_h2: 'Art, Style & <em>Passion</em> for every Detail',
+        about_p1: 'At Amazing Party TX we transform ordinary spaces into extraordinary settings. We create memorable visual experiences, custom-designed for every celebration.',
+        about_p2: 'We take care of every detail — from concept and decoration to planning and coordination — so your event reflects your personality and runs stress-free.',
+        about_btn: 'Work with us',
+        services_tag: 'What we offer', services_title: 'Our Services',
+        services_sub: 'From the first consultation to the last detail installed, we make your vision a reality.',
+        gallery_tag: 'Our work', gallery_title: 'Event Gallery',
+        gallery_sub: 'Each event is a unique creation designed around our clients' vision.',
+        gallery_btn: 'See more on Instagram · @amazingpartytx',
+        process_tag: 'How we work', process_title: 'Our Process',
+        process_sub: 'From the first consultation to the last detail, we are with you every step of the way.',
+        p1_title: 'Initial Consultation', p1_desc: 'We meet to understand your vision, budget and event details.',
+        p2_title: 'Design & Proposal', p2_desc: 'We create a personalized visual proposal with moodboard, color palette and concept.',
+        p3_title: 'Confirmation', p3_desc: 'You approve the design, we sign the contract and secure your date.',
+        p4_title: 'Installation', p4_desc: 'On the day of the event we transform the space with perfection and punctuality.',
+        contact_tag: 'Ready to start?',
+        contact_title: 'Let's design your event <em>together</em>',
+        contact_desc: 'At AmazingPartyTX every event receives personalized attention, strategic design and high-level execution. Take the first step today.',
+        contact_btn: '✨ Start my New Client Form',
+        instagram_follow: 'Follow us on Instagram',
+        stats_events: 'Events completed', stats_rating: 'Average rating',
+        stats_cities: 'Cities in Texas', stats_custom: 'Customized',
+      }
+    };
+
+    let currentLang = 'es';
+
+    function toggleLang() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      const t = translations[currentLang];
+      document.getElementById('langBtn').textContent = currentLang === 'es' ? 'ES / EN' : 'EN / ES';
+
+      // Nav
+      document.getElementById('nav_about').textContent = t.nav_about;
+      document.getElementById('nav_services').textContent = t.nav_services;
+      document.getElementById('nav_gallery').textContent = t.nav_gallery;
+      document.getElementById('nav_contact').textContent = t.nav_contact;
+
+      // Hero
+      document.getElementById('hero_eyebrow').textContent = t.hero_eyebrow;
+      document.getElementById('hero_title').innerHTML = t.hero_title;
+      document.getElementById('hero_sub').textContent = t.hero_sub;
+      document.getElementById('hero_btn1').textContent = t.hero_btn1;
+      document.getElementById('hero_btn2').textContent = t.hero_btn2;
+
+      // Stats
+      document.getElementById('stats_events').textContent = t.stats_events;
+      document.getElementById('stats_rating').textContent = t.stats_rating;
+      document.getElementById('stats_cities').textContent = t.stats_cities;
+      document.getElementById('stats_custom').textContent = t.stats_custom;
+
+      // About
+      document.getElementById('about_tag').textContent = t.about_tag;
+      document.getElementById('about_h2').innerHTML = t.about_h2;
+      document.getElementById('about_p1').textContent = t.about_p1;
+      document.getElementById('about_p2').textContent = t.about_p2;
+      document.getElementById('about_btn').textContent = t.about_btn;
+
+      // Services
+      document.getElementById('services_tag').textContent = t.services_tag;
+      document.getElementById('services_title').textContent = t.services_title;
+      document.getElementById('services_sub').textContent = t.services_sub;
+
+      // Instagram
+      document.getElementById('instagram_follow').textContent = t.instagram_follow;
+
+      // Gallery
+      document.getElementById('gallery_tag').textContent = t.gallery_tag;
+      document.getElementById('gallery_title').textContent = t.gallery_title;
+      document.getElementById('gallery_sub').textContent = t.gallery_sub;
+      document.getElementById('gallery_btn').textContent = t.gallery_btn;
+
+      // Process
+      document.getElementById('process_tag').textContent = t.process_tag;
+      document.getElementById('process_title').textContent = t.process_title;
+      document.getElementById('process_sub').textContent = t.process_sub;
+      document.getElementById('p1_title').textContent = t.p1_title;
+      document.getElementById('p1_desc').textContent = t.p1_desc;
+      document.getElementById('p2_title').textContent = t.p2_title;
+      document.getElementById('p2_desc').textContent = t.p2_desc;
+      document.getElementById('p3_title').textContent = t.p3_title;
+      document.getElementById('p3_desc').textContent = t.p3_desc;
+      document.getElementById('p4_title').textContent = t.p4_title;
+      document.getElementById('p4_desc').textContent = t.p4_desc;
+
+      // Contact
+      document.getElementById('contact_tag').textContent = t.contact_tag;
+      document.getElementById('contact_title').innerHTML = t.contact_title;
+      document.getElementById('contact_desc').textContent = t.contact_desc;
+      document.getElementById('contact_btn').textContent = t.contact_btn;
+    }
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    function checkMobile() { burger.style.display = window.innerWidth <= 860 ? 'flex' : 'none'; }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    burger.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+    function closeMobile() { mobileMenu.style.display = 'none'; }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    // Force show testimonials and gallery immediately
+    document.querySelectorAll('.testi-card, .mosaic, .g').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    // ── CAROUSEL ──
+    let cIdx = 0;
+    const cSlides = document.querySelectorAll('.cslide');
+    const cDots = document.getElementById('carrDots');
+    let cTimer;
+
+    cSlides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'carr-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goC(i);
+      cDots.appendChild(d);
+    });
+
+    function goC(n) {
+      cSlides[cIdx].classList.remove('active');
+      cDots.children[cIdx].classList.remove('active');
+      cIdx = (n + cSlides.length) % cSlides.length;
+      cSlides[cIdx].classList.add('active');
+      cDots.children[cIdx].classList.add('active');
+      clearInterval(cTimer);
+      cTimer = setInterval(() => goC(cIdx + 1), 5000);
+    }
+
+    function moveC(dir) { goC(cIdx + dir); }
+    cTimer = setInterval(() => goC(cIdx + 1), 5000);
+
+    // Gallery filter
+
+    function filterGallery(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.gi').forEach(item => {
+        if (cat === 'all' || item.classList.contains(cat)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    async function handleForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const d = new FormData(form);
+      try { await fetch(form.action, { method: 'POST', body: d, headers: { 'Accept': 'application/json
